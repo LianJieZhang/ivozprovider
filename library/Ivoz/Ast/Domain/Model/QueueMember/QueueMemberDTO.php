@@ -47,16 +47,6 @@ class QueueMemberDTO implements DataTransferObjectInterface
     private $id;
 
     /**
-     * @var mixed
-     */
-    private $queueMemberId;
-
-    /**
-     * @var mixed
-     */
-    private $queueMember;
-
-    /**
      * @return array
      */
     public function __toArray()
@@ -68,8 +58,7 @@ class QueueMemberDTO implements DataTransferObjectInterface
             'stateInterface' => $this->getStateInterface(),
             'penalty' => $this->getPenalty(),
             'paused' => $this->getPaused(),
-            'id' => $this->getId(),
-            'queueMemberId' => $this->getQueueMemberId()
+            'id' => $this->getId()
         ];
     }
 
@@ -78,7 +67,7 @@ class QueueMemberDTO implements DataTransferObjectInterface
      */
     public function transformForeignKeys(ForeignKeyTransformerInterface $transformer)
     {
-        $this->queueMember = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\QueueMember\\QueueMember', $this->getQueueMemberId());
+
     }
 
     /**
@@ -227,34 +216,6 @@ class QueueMemberDTO implements DataTransferObjectInterface
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param integer $queueMemberId
-     *
-     * @return QueueMemberDTO
-     */
-    public function setQueueMemberId($queueMemberId)
-    {
-        $this->queueMemberId = $queueMemberId;
-
-        return $this;
-    }
-
-    /**
-     * @return integer
-     */
-    public function getQueueMemberId()
-    {
-        return $this->queueMemberId;
-    }
-
-    /**
-     * @return \Ivoz\Provider\Domain\Model\QueueMember\QueueMember
-     */
-    public function getQueueMember()
-    {
-        return $this->queueMember;
     }
 }
 

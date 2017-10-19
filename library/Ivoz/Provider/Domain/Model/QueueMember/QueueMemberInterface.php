@@ -23,6 +23,22 @@ interface QueueMemberInterface extends EntityInterface
     public function getPenalty();
 
     /**
+     * Set astQueueMember
+     *
+     * @param \Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface $astQueueMember
+     *
+     * @return self
+     */
+    public function setAstQueueMember(\Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface $astQueueMember = null);
+
+    /**
+     * Get astQueueMember
+     *
+     * @return \Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface
+     */
+    public function getAstQueueMember();
+
+    /**
      * Set queue
      *
      * @param \Ivoz\Provider\Domain\Model\Queue\QueueInterface $queue

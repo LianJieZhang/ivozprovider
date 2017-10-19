@@ -41,16 +41,16 @@ Ivoz\Ast\Domain\Model\QueueMember\QueueMemberAbstract:
       nullable: true
       options:
         unsigned: false
-  manyToOne:
-    queueMember:
-      targetEntity: \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
-      cascade: {  }
-      fetch: LAZY
-      mappedBy: null
-      inversedBy: null
-      joinColumns:
-        queueMemberId:
-          referencedColumnName: id
-          onDelete: cascade
-      orphanRemoval: false
+#  oneToOne:
+#    queueMember:
+#      targetEntity: \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
+#      cascade: {  }
+#      fetch: LAZY
+#      mappedBy: null
+#      inversedBy: astQueueMember
+#      joinColumns:
+#        queueMemberId:
+#          referencedColumnName: id
+#          onDelete: cascade
+#      orphanRemoval: false
 

@@ -102,21 +102,5 @@ interface QueueMemberInterface extends EntityInterface
      */
     public function getPaused();
 
-    /**
-     * Set queueMember
-     *
-     * @param \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $queueMember
-     *
-     * @return self
-     */
-    public function setQueueMember(\Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $queueMember = null);
-
-    /**
-     * Get queueMember
-     *
-     * @return \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
-     */
-    public function getQueueMember();
-
 }
 

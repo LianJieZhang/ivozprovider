@@ -43,11 +43,6 @@ abstract class QueueMemberAbstract
      */
     protected $paused;
 
-    /**
-     * @var \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
-     */
-    protected $queueMember;
-
 
     /**
      * Changelog tracking purpose
@@ -137,7 +132,6 @@ abstract class QueueMemberAbstract
             ->setStateInterface($dto->getStateInterface())
             ->setPenalty($dto->getPenalty())
             ->setPaused($dto->getPaused())
-            ->setQueueMember($dto->getQueueMember())
         ;
     }
 
@@ -158,8 +152,7 @@ abstract class QueueMemberAbstract
             ->setMembername($dto->getMembername())
             ->setStateInterface($dto->getStateInterface())
             ->setPenalty($dto->getPenalty())
-            ->setPaused($dto->getPaused())
-            ->setQueueMember($dto->getQueueMember());
+            ->setPaused($dto->getPaused());
 
 
         return $this;
@@ -176,8 +169,7 @@ abstract class QueueMemberAbstract
             ->setMembername($this->getMembername())
             ->setStateInterface($this->getStateInterface())
             ->setPenalty($this->getPenalty())
-            ->setPaused($this->getPaused())
-            ->setQueueMemberId($this->getQueueMember() ? $this->getQueueMember()->getId() : null);
+            ->setPaused($this->getPaused());
     }
 
     /**
@@ -191,8 +183,7 @@ abstract class QueueMemberAbstract
             'membername' => self::getMembername(),
             'stateInterface' => self::getStateInterface(),
             'penalty' => self::getPenalty(),
-            'paused' => self::getPaused(),
-            'queueMemberId' => self::getQueueMember() ? self::getQueueMember()->getId() : null
+            'paused' => self::getPaused()
         ];
     }
 
@@ -367,30 +358,6 @@ abstract class QueueMemberAbstract
     public function getPaused()
     {
         return $this->paused;
-    }
-
-    /**
-     * Set queueMember
-     *
-     * @param \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $queueMember
-     *
-     * @return self
-     */
-    public function setQueueMember(\Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $queueMember = null)
-    {
-        $this->queueMember = $queueMember;
-
-        return $this;
-    }
-
-    /**
-     * Get queueMember
-     *
-     * @return \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
-     */
-    public function getQueueMember()
-    {
-        return $this->queueMember;
     }
 
 

@@ -4,6 +4,10 @@ production:
   class: \IvozProvider\Model\Queues
   entity: Ivoz\Provider\Domain\Model\Queue\Queue
   fields:
+    id:
+      title: ngettext('Id', 'Ids', 1)
+      required: false
+      readonly: true
     companyId:
       title: ngettext('Company', 'Companies', 1)
       type: select
@@ -11,7 +15,6 @@ production:
       source:
         data: mapper
         config:
-#          mapperName: \IvozProvider\Mapper\Sql\Companies
           entity: \Ivoz\Provider\Domain\Model\Company\Company
           fieldName:
             fields:

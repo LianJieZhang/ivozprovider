@@ -37,6 +37,7 @@ Ivoz\Provider\Domain\Model\Queue\QueueAbstract:
       length: 128
       options:
         fixed: false
+      column: name
     maxWaitTime:
       type: integer
       nullable: true

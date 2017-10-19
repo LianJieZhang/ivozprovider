@@ -157,6 +157,11 @@ class QueueDTO implements DataTransferObjectInterface
     private $fullVoiceMailUser;
 
     /**
+     * @var array|null
+     */
+    private $members = null;
+
+    /**
      * @return array
      */
     public function __toArray()
@@ -182,7 +187,8 @@ class QueueDTO implements DataTransferObjectInterface
             'timeoutVoiceMailUserId' => $this->getTimeoutVoiceMailUserId(),
             'fullLocutionId' => $this->getFullLocutionId(),
             'fullExtensionId' => $this->getFullExtensionId(),
-            'fullVoiceMailUserId' => $this->getFullVoiceMailUserId()
+            'fullVoiceMailUserId' => $this->getFullVoiceMailUserId(),
+            'membersId' => $this->getMembersId()
         ];
     }
 
@@ -199,6 +205,17 @@ class QueueDTO implements DataTransferObjectInterface
         $this->fullLocution = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\Locution\\Locution', $this->getFullLocutionId());
         $this->fullExtension = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\Extension\\Extension', $this->getFullExtensionId());
         $this->fullVoiceMailUser = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\User\\User', $this->getFullVoiceMailUserId());
+        if (!is_null($this->members)) {
+            $items = $this->getMembers();
+            $this->members = [];
+            foreach ($items as $item) {
+                $this->members[] = $transformer->transform(
+                    'Ivoz\\Provider\\Domain\\Model\\QueueMember\\QueueMember',
+                    $item->getId() ?? $item
+                );
+            }
+        }
+
     }
 
     /**
@@ -206,7 +223,10 @@ class QueueDTO implements DataTransferObjectInterface
      */
     public function transformCollections(CollectionTransformerInterface $transformer)
     {
-
+        $this->members = $transformer->transform(
+            'Ivoz\\Provider\\Domain\\Model\\QueueMember\\QueueMember',
+            $this->members
+        );
     }
 
     /**
@@ -691,6 +711,26 @@ class QueueDTO implements DataTransferObjectInterface
     public function getFullVoiceMailUser()
     {
         return $this->fullVoiceMailUser;
+    }
+
+    /**
+     * @param array $members
+     *
+     * @return QueueDTO
+     */
+    public function setMembers($members)
+    {
+        $this->members = $members;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getMembers()
+    {
+        return $this->members;
     }
 }
 

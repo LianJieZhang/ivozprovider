@@ -24,12 +24,22 @@ class QueueMemberDTO implements DataTransferObjectInterface
     /**
      * @var mixed
      */
+    private $astQueueMemberId;
+
+    /**
+     * @var mixed
+     */
     private $queueId;
 
     /**
      * @var mixed
      */
     private $userId;
+
+    /**
+     * @var mixed
+     */
+    private $astQueueMember;
 
     /**
      * @var mixed
@@ -49,6 +59,7 @@ class QueueMemberDTO implements DataTransferObjectInterface
         return [
             'penalty' => $this->getPenalty(),
             'id' => $this->getId(),
+            'astQueueMemberId' => $this->getAstQueueMemberId(),
             'queueId' => $this->getQueueId(),
             'userId' => $this->getUserId()
         ];
@@ -59,6 +70,7 @@ class QueueMemberDTO implements DataTransferObjectInterface
      */
     public function transformForeignKeys(ForeignKeyTransformerInterface $transformer)
     {
+        $this->astQueueMember = $transformer->transform('Ivoz\\Ast\\Domain\\Model\\QueueMember\\QueueMember', $this->getAstQueueMemberId());
         $this->queue = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\Queue\\Queue', $this->getQueueId());
         $this->user = $transformer->transform('Ivoz\\Provider\\Domain\\Model\\User\\User', $this->getUserId());
     }
@@ -109,6 +121,26 @@ class QueueMemberDTO implements DataTransferObjectInterface
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param array $astQueueMember
+     *
+     * @return QueueMemberDTO
+     */
+    public function setAstQueueMember($astQueueMember)
+    {
+        $this->astQueueMember = $astQueueMember;
+
+        return $this;
+    }
+
+    /**
+     * @return array
+     */
+    public function getAstQueueMember()
+    {
+        return $this->astQueueMember;
     }
 
     /**

@@ -3,6 +3,7 @@
 namespace Ivoz\Provider\Domain\Model\Queue;
 
 use Ivoz\Core\Domain\Model\EntityInterface;
+use Doctrine\Common\Collections\Collection;
 
 interface QueueInterface extends EntityInterface
 {
@@ -327,6 +328,37 @@ interface QueueInterface extends EntityInterface
      * @return \Ivoz\Provider\Domain\Model\User\UserInterface
      */
     public function getFullVoiceMailUser();
+
+    /**
+     * Add member
+     *
+     * @param \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $member
+     *
+     * @return QueueTrait
+     */
+    public function addMember(\Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $member);
+
+    /**
+     * Remove member
+     *
+     * @param \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $member
+     */
+    public function removeMember(\Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface $member);
+
+    /**
+     * Replace members
+     *
+     * @param \Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface[] $members
+     * @return self
+     */
+    public function replaceMembers(Collection $members);
+
+    /**
+     * Get members
+     *
+     * @return array
+     */
+    public function getMembers(\Doctrine\Common\Collections\Criteria $criteria = null);
 
 }
 

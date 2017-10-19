@@ -11,6 +11,10 @@ Ivoz\Provider\Domain\Model\Queue\Queue:
       id: true
       generator:
         strategy: IDENTITY
+  oneToMany:
+    members:
+      targetEntity: Ivoz\Provider\Domain\Model\QueueMember\QueueMemberInterface
+      mappedBy: queue
   lifecycleCallbacks:
     postLoad:
       - initChangelog

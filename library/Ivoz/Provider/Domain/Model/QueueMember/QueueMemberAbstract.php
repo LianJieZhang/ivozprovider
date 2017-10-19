@@ -17,6 +17,11 @@ abstract class QueueMemberAbstract
     protected $penalty;
 
     /**
+     * @var \Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface
+     */
+    protected $astQueueMember;
+
+    /**
      * @var \Ivoz\Provider\Domain\Model\Queue\QueueInterface
      */
     protected $queue;
@@ -109,6 +114,7 @@ abstract class QueueMemberAbstract
 
         return $self
             ->setPenalty($dto->getPenalty())
+            ->setAstQueueMember($dto->getAstQueueMember())
             ->setQueue($dto->getQueue())
             ->setUser($dto->getUser())
         ;
@@ -127,6 +133,7 @@ abstract class QueueMemberAbstract
 
         $this
             ->setPenalty($dto->getPenalty())
+            ->setAstQueueMember($dto->getAstQueueMember())
             ->setQueue($dto->getQueue())
             ->setUser($dto->getUser());
 
@@ -141,6 +148,7 @@ abstract class QueueMemberAbstract
     {
         return self::createDTO()
             ->setPenalty($this->getPenalty())
+            ->setAstQueueMemberId($this->getAstQueueMember() ? $this->getAstQueueMember()->getId() : null)
             ->setQueueId($this->getQueue() ? $this->getQueue()->getId() : null)
             ->setUserId($this->getUser() ? $this->getUser()->getId() : null);
     }
@@ -152,6 +160,7 @@ abstract class QueueMemberAbstract
     {
         return [
             'penalty' => self::getPenalty(),
+            'astQueueMemberId' => self::getAstQueueMember() ? self::getAstQueueMember()->getId() : null,
             'queueId' => self::getQueue() ? self::getQueue()->getId() : null,
             'userId' => self::getUser() ? self::getUser()->getId() : null
         ];
@@ -188,6 +197,30 @@ abstract class QueueMemberAbstract
     public function getPenalty()
     {
         return $this->penalty;
+    }
+
+    /**
+     * Set astQueueMember
+     *
+     * @param \Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface $astQueueMember
+     *
+     * @return self
+     */
+    public function setAstQueueMember(\Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface $astQueueMember = null)
+    {
+        $this->astQueueMember = $astQueueMember;
+
+        return $this;
+    }
+
+    /**
+     * Get astQueueMember
+     *
+     * @return \Ivoz\Ast\Domain\Model\QueueMember\QueueMemberInterface
+     */
+    public function getAstQueueMember()
+    {
+        return $this->astQueueMember;
     }
 
     /**
